@@ -4,7 +4,7 @@
   <h1>Delete driver: {{ driver.first_name }} {{ driver.last_name }}?</h1>
   <form action="" method="post">
     {% csrf_token %}
-
     <input type="submit" value="Yes" class="btn btn-danger">
+    <a href="{% url 'taxi:driver-detail' driver.id %}" class="btn btn-primary">Cancel</a>
   </form>
 {% endblock %}

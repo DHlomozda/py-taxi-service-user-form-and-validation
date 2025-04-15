@@ -20,7 +20,7 @@ class DriverLicenseUpdateForm(models.ModelForm):
             )
         if (
                 not license_number[:3].isalpha()
-                or not license_number[:3].isupper()
+                and not license_number[:3].isupper()
         ):
             raise ValidationError(
                 "Driver license should starts with 3 capital letters"
@@ -48,7 +48,7 @@ class DriverCreateForm(UserCreationForm):
         if (
                 len(license_number) != 8
                 or not (license_number[:3].isalpha()
-                        or license_number[:3].isupper())
+                        and license_number[:3].isupper())
                 or not license_number[-5:].isdigit()
         ):
             raise ValidationError("License must consist 8 characters "
@@ -66,4 +66,4 @@ class CarForm(models.ModelForm):
 
     class Meta:
         model = Car
-        fields = "__all__"
+        fields = ("model", "manufacturer", "drivers")
