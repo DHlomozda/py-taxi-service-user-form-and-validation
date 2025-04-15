@@ -19,8 +19,8 @@ class DriverLicenseUpdateForm(models.ModelForm):
                 "Driver license consist of 8 characters"
             )
         if (
-                not license_number[:3].isalpha()
-                or not license_number[:3].isupper()
+                not (license_number[:3].isalpha()
+                     and license_number[:3].isupper())
         ):
             raise ValidationError(
                 "Driver license should starts with 3 capital letters"
